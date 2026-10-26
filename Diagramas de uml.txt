@@ -1,0 +1,51 @@
+classDiagram
+    class Personaje {
+        <<abstract>>
+        -String __nombre
+        -int __vida
+        -int __ataque
+        -int __defensa
+        +get_nombre() String
+        +get_vida() int
+        +get_ataque() int
+        +get_defensa() int
+        +set_nombre(nombre)
+        +set_vida(vida)
+        +set_ataque(ataque)
+        +set_defensa(defensa)
+        +recibir_danio(cantidad) int
+        +esta_vivo() bool
+        +mostrar_estado() String
+        +validar_antes_de_atacar(objetivo)
+        +atacar(objetivo)* int
+    }
+
+    class Guerrero {
+        +atacar(objetivo) int
+    }
+
+    class Mago {
+        +atacar(objetivo) int
+    }
+
+    class Arquero {
+        +atacar(objetivo) int
+    }
+
+    class Combate {
+        +Personaje p1
+        +Personaje p2
+        +Personaje atacante_actual
+        +Personaje defensor_actual
+        +Personaje ganador
+        +iniciar() Personaje
+        +cambiar_turno()
+        +verificar_ganador() Personaje
+        +mostrar_resultado()
+    }
+
+    Personaje <|-- Guerrero : Herencia
+    Personaje <|-- Mago : Herencia
+    Personaje <|-- Arquero : Herencia
+    Combate o-- Personaje : Agregación (administra 2)
+    Personaje ..> Personaje : Asociación (ataca a)
